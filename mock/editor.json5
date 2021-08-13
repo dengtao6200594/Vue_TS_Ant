@@ -1,0 +1,9 @@
+{
+  data:{
+    role:["editor"]
+  },
+  meta:{
+    status:200,
+    msg:"OK"
+  }
+}
