@@ -1,104 +1,111 @@
 <template>
-  <a-layout id="components-layout-demo-top-side-2">
-    <a-layout-header class="header">
+  <a-layout class="layout">
+    <a-layout-sider v-model="collapsed" collapsible>
       <div class="logo" />
-      <a-menu theme="dark" mode="horizontal" :default-selected-keys="['2']" :style="{ lineHeight: '64px' }">
-        <a-menu-item key="1">
-          nav 1
+      <a-menu theme="dark" mode="vertical" :default-selected-keys="['1']">
+        <!-- <a-menu-item key="1">
+          <a-icon type="user" />
+          <span>nav 1</span>
         </a-menu-item>
-        <a-menu-item key="2">
-          nav 2
-        </a-menu-item>
+        <a-sub-menu key="2">
+          <span slot="title">
+            <a-icon type="video-camera" /><span>nav 2</span>
+          </span>
+          <a-menu-item key="this">
+            <a-icon type="form" /><span>this</span>
+          </a-menu-item>
+          <a-menu-item key="that">that</a-menu-item>
+          <a-menu-item key="two">two</a-menu-item>
+        </a-sub-menu>
         <a-menu-item key="3">
-          nav 3
-        </a-menu-item>
+          <a-icon type="upload" />
+          <span>nav 3</span>
+        </a-menu-item> -->
+        <template v-for="item in data">
+          <a-menu-item v-if="!item.children" :key="item.id">
+            <a-icon :type="item.icon" /><span>{{item.title}}</span>
+          </a-menu-item>
+          <a-sub-menu v-else :key="item.id">
+            <span slot="title">
+              <a-icon :type="item.icon" /><span>{{item.title}}</span>
+            </span>
+            <template v-for="item1 in item.children">
+              <a-menu-item v-if="!item.children" :key="item1.id"> {{item1.title}}</a-menu-item>
+              <a-sub-menu v-else :key="item1.id" :title="item1.title">
+                <a-menu-item v-for="item2 in item1.children" :key="item2.id">{{item2.title}}</a-menu-item>
+              </a-sub-menu>
+            </template>
+          </a-sub-menu>
+        </template>
+
       </a-menu>
-    </a-layout-header>
+    </a-layout-sider>
     <a-layout>
-      <a-layout-sider width="200" style="background: #fff">
-        <a-menu mode="inline" :default-selected-keys="['1']" :default-open-keys="['sub1']" :style="{ height: '100%', borderRight: 0 }">
-          <a-sub-menu key="sub1">
-            <span slot="title">
-              <a-icon type="user" />subnav 1
-            </span>
-            <a-menu-item key="1">
-              option1
-            </a-menu-item>
-            <a-menu-item key="2">
-              option2
-            </a-menu-item>
-            <a-menu-item key="3">
-              option3
-            </a-menu-item>
-            <a-menu-item key="4">
-              option4
-            </a-menu-item>
-          </a-sub-menu>
-          <a-sub-menu key="sub2">
-            <span slot="title">
-              <a-icon type="laptop" />subnav 2
-            </span>
-            <a-menu-item key="5">
-              option5
-            </a-menu-item>
-            <a-menu-item key="6">
-              option6
-            </a-menu-item>
-            <a-menu-item key="7">
-              option7
-            </a-menu-item>
-            <a-menu-item key="8">
-              option8
-            </a-menu-item>
-          </a-sub-menu>
-          <a-sub-menu key="sub3">
-            <span slot="title">
-              <a-icon type="notification" />subnav 3
-            </span>
-            <a-menu-item key="9">
-              option9
-            </a-menu-item>
-            <a-menu-item key="10">
-              option10
-            </a-menu-item>
-            <a-menu-item key="11">
-              option11
-            </a-menu-item>
-            <a-menu-item key="12">
-              option12
-            </a-menu-item>
-          </a-sub-menu>
-        </a-menu>
-      </a-layout-sider>
-      <a-layout style="padding: 0 24px 24px">
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>List</a-breadcrumb-item>
-          <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>
-        <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
-          Content
-        </a-layout-content>
-      </a-layout>
+      <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
+        Content
+      </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script lang='ts'>
+import json from '@/assets/json5/leftMenu'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
 export default class Layout extends Vue {
-  collapsed: boolean = false
+  collapsed: boolean = true
+  data: Array<unknown> = [
+    { id: 53, url: '/monitor', title: '全局监控', icon: 'account-book' },
+    {
+      id: 215,
+      url: '/operationManage',
+      title: '运营管理',
+      icon: 'alert',
+      children: [
+        { id: 56, url: '/industry', title: '工业车', icon: 'api' },
+        { id: 60, url: '/shuttle', title: '观光车', icon: 'audio' },
+        { id: 64, url: '/clean', title: '清扫车', icon: 'bell' },
+        {
+          id: 65,
+          url: '/security',
+          title: '安防车',
+          icon: 'bug',
+          children: [
+            {
+              id: 62,
+              url: '/info',
+              title: '基础数据',
+              icon: 'build'
+            },
+            {
+              id: 63,
+              url: '/info',
+              title: '乱跑数据',
+              icon: 'build'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: 66,
+      url: '/remote',
+      title: '人机共驾',
+      icon: 'bulb'
+    }
+  ]
 }
 </script>
 
-<style lang='less' scoped>
-#components-layout-demo-top-side-2 .logo {
-  width: 120px;
-  height: 31px;
+<style lang='scss'>
+.layout {
+  height: 100%;
+}
+
+.layout .logo {
+  height: 32px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
-  float: left;
+  margin: 16px;
 }
 </style>

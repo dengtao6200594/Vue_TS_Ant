@@ -10,3 +10,4 @@ declare module '*.vue' {
   }
   export default Vue
 }
+// declare module 'ant-design__icons-vue'

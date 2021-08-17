@@ -3,8 +3,13 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import { Layout, Icon, Menu } from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
 
 Vue.config.productionTip = false
+Vue.use(Layout)
+Vue.use(Icon)
+Vue.use(Menu)
 
 new Vue({
   router,

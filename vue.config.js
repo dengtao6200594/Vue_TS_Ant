@@ -48,7 +48,8 @@ module.exports = {
 	configureWebpack: {
 		resolve: {
 			alias: {
-				'@': resolve('src') //path.resolve(__dirname, 'src')
+				'@': resolve('src'), // path.resolve(__dirname, 'src')
+				// '@ant-design/icons/lib/dist$': resolve('./src/utils/icon.ts')// path.resolve(__dirname,'./src/utils/icons.js')
 			}
 		}
 	},
