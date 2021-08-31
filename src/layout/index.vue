@@ -15,7 +15,9 @@
             <a-icon type="form" /><span>this</span>
           </a-menu-item>
           <a-menu-item key="that">that</a-menu-item>
-          <a-menu-item key="two">two</a-menu-item>
+          <a-sub-menu key="6" title="GG">
+            <a-menu-item key="two">two</a-menu-item>
+          </a-sub-menu>
         </a-sub-menu>
         <a-menu-item key="3">
           <a-icon type="upload" />
@@ -30,7 +32,7 @@
               <a-icon :type="item.icon" /><span>{{item.title}}</span>
             </span>
             <template v-for="item1 in item.children">
-              <a-menu-item v-if="!item.children" :key="item1.id"> {{item1.title}}</a-menu-item>
+              <a-menu-item v-if="item1.children.length===0" :key="item1.id"> {{item1.title}}</a-menu-item>
               <a-sub-menu v-else :key="item1.id" :title="item1.title">
                 <a-menu-item v-for="item2 in item1.children" :key="item2.id">{{item2.title}}</a-menu-item>
               </a-sub-menu>
@@ -49,7 +51,6 @@
 </template>
 
 <script lang='ts'>
-import json from '@/assets/json5/leftMenu'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component
@@ -63,9 +64,21 @@ export default class Layout extends Vue {
       title: '运营管理',
       icon: 'alert',
       children: [
-        { id: 56, url: '/industry', title: '工业车', icon: 'api' },
-        { id: 60, url: '/shuttle', title: '观光车', icon: 'audio' },
-        { id: 64, url: '/clean', title: '清扫车', icon: 'bell' },
+        {
+          id: 56,
+          url: '/industry',
+          title: '工业车',
+          icon: 'api',
+          children: []
+        },
+        {
+          id: 60,
+          url: '/shuttle',
+          title: '观光车',
+          icon: 'audio',
+          children: []
+        },
+        { id: 64, url: '/clean', title: '清扫车', icon: 'bell', children: [] },
         {
           id: 65,
           url: '/security',
