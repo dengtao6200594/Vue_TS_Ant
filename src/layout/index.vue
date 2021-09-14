@@ -44,7 +44,7 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-        Content
+       <div style="width:500px;"><MyTest></MyTest></div> 
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -52,8 +52,11 @@
 
 <script lang='ts'>
 import { Vue, Component } from 'vue-property-decorator'
+import MyTest from '@/views/myTest/MyTest.vue'
 
-@Component
+@Component({
+  components:{MyTest}
+})
 export default class Layout extends Vue {
   collapsed: boolean = true
   data: Array<unknown> = [
