@@ -2,30 +2,10 @@
   <a-layout class="layout">
     <a-layout-sider v-model="collapsed" collapsible>
       <div class="logo" />
-      <a-menu theme="dark" mode="vertical" :default-selected-keys="['1']">
-        <!-- <a-menu-item key="1">
-          <a-icon type="user" />
-          <span>nav 1</span>
-        </a-menu-item>
-        <a-sub-menu key="2">
-          <span slot="title">
-            <a-icon type="video-camera" /><span>nav 2</span>
-          </span>
-          <a-menu-item key="this">
-            <a-icon type="form" /><span>this</span>
-          </a-menu-item>
-          <a-menu-item key="that">that</a-menu-item>
-          <a-sub-menu key="6" title="GG">
-            <a-menu-item key="two">two</a-menu-item>
-          </a-sub-menu>
-        </a-sub-menu>
-        <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span>nav 3</span>
-        </a-menu-item> -->
+      <a-menu theme="dark" mode="vertical" :default-selected-keys="['1']" >
         <template v-for="item in data">
           <a-menu-item v-if="!item.children" :key="item.id">
-            <a-icon :type="item.icon" /><span>{{ item.title }}</span>
+            <router-link :to="item.url"><a-icon :type="item.icon" /><span>{{ item.title }}</span></router-link>
           </a-menu-item>
           <a-sub-menu v-else :key="item.id">
             <span slot="title">
@@ -54,7 +34,7 @@
           minHeight: '280px',
         }"
       >
-        <div style="width: 500px"><GoodLists></GoodLists></div>
+      <router-view/>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -70,11 +50,11 @@ import GoodLists from "@/views/myTest/GoodLists.vue";
 export default class Layout extends Vue {
   collapsed: boolean = true;
   data: Array<unknown> = [
-    { id: 53, url: "/monitor", title: "全局监控", icon: "account-book" },
+    { id: 53, url: "/editor", title: "富文本编辑器", icon: "account-book" },
     {
       id: 215,
       url: "/operationManage",
-      title: "运营管理",
+      title: "哎呦",
       icon: "alert",
       children: [
         {

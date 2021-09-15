@@ -16,7 +16,11 @@ const constantRoutes: Array<RouteConfig> = [
     component: Layout
   }
 ]
-const asyncRoutes: Array<RouteConfig> = []
+const asyncRoutes: Array<RouteConfig> = [{
+  path: '/editor',
+  name: 'Editor',
+  component: () => import('../views/VueQuillEditor/index.vue')
+}]
 
 const router = new VueRouter({
   mode: 'history',
