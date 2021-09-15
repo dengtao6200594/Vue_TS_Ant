@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/components/GoodLists/GoodLists.jsx", "src/views/myTest/MyTest.jsx"  ],
   "exclude": [
     "node_modules"
   ]

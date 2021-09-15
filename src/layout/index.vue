@@ -25,92 +25,102 @@
         </a-menu-item> -->
         <template v-for="item in data">
           <a-menu-item v-if="!item.children" :key="item.id">
-            <a-icon :type="item.icon" /><span>{{item.title}}</span>
+            <a-icon :type="item.icon" /><span>{{ item.title }}</span>
           </a-menu-item>
           <a-sub-menu v-else :key="item.id">
             <span slot="title">
-              <a-icon :type="item.icon" /><span>{{item.title}}</span>
+              <a-icon :type="item.icon" /><span>{{ item.title }}</span>
             </span>
             <template v-for="item1 in item.children">
-              <a-menu-item v-if="item1.children.length===0" :key="item1.id"> {{item1.title}}</a-menu-item>
+              <a-menu-item v-if="item1.children.length === 0" :key="item1.id">
+                {{ item1.title }}</a-menu-item
+              >
               <a-sub-menu v-else :key="item1.id" :title="item1.title">
-                <a-menu-item v-for="item2 in item1.children" :key="item2.id">{{item2.title}}</a-menu-item>
+                <a-menu-item v-for="item2 in item1.children" :key="item2.id">{{
+                  item2.title
+                }}</a-menu-item>
               </a-sub-menu>
             </template>
           </a-sub-menu>
         </template>
-
       </a-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }">
-       <div style="width:500px;"><MyTest></MyTest></div> 
+      <a-layout-content
+        :style="{
+          margin: '24px 16px',
+          padding: '24px',
+          background: '#fff',
+          minHeight: '280px',
+        }"
+      >
+        <div style="width: 500px"><GoodLists></GoodLists></div>
       </a-layout-content>
     </a-layout>
   </a-layout>
 </template>
 
 <script lang='ts'>
-import { Vue, Component } from 'vue-property-decorator'
-import MyTest from '@/views/myTest/MyTest.vue'
+import { Vue, Component } from "vue-property-decorator";
+import GoodLists from "@/views/myTest/GoodLists.vue";
 
 @Component({
-  components:{MyTest}
+  components: { GoodLists },
 })
 export default class Layout extends Vue {
-  collapsed: boolean = true
+  collapsed: boolean = true;
   data: Array<unknown> = [
-    { id: 53, url: '/monitor', title: '全局监控', icon: 'account-book' },
+    { id: 53, url: "/monitor", title: "全局监控", icon: "account-book" },
     {
       id: 215,
-      url: '/operationManage',
-      title: '运营管理',
-      icon: 'alert',
+      url: "/operationManage",
+      title: "运营管理",
+      icon: "alert",
       children: [
         {
           id: 56,
-          url: '/industry',
-          title: '工业车',
-          icon: 'api',
-          children: []
+          url: "/industry",
+          title: "工业车",
+          icon: "api",
+          children: [],
         },
         {
           id: 60,
-          url: '/shuttle',
-          title: '观光车',
-          icon: 'audio',
-          children: []
+          url: "/shuttle",
+          title: "观光车",
+          icon: "audio",
+          children: [],
         },
-        { id: 64, url: '/clean', title: '清扫车', icon: 'bell', children: [] },
+        { id: 64, url: "/clean", title: "清扫车", icon: "bell", children: [] },
         {
           id: 65,
-          url: '/security',
-          title: '安防车',
-          icon: 'bug',
+          url: "/security",
+          title: "安防车",
+          icon: "bug",
           children: [
             {
               id: 62,
-              url: '/info',
-              title: '基础数据',
-              icon: 'build'
+              url: "/info",
+              title: "基础数据",
+              icon: "build",
             },
             {
               id: 63,
-              url: '/info',
-              title: '乱跑数据',
-              icon: 'build'
-            }
-          ]
-        }
-      ]
+              url: "/info",
+              title: "乱跑数据",
+              icon: "build",
+            },
+          ],
+        },
+      ],
     },
     {
       id: 66,
-      url: '/remote',
-      title: '人机共驾',
-      icon: 'bulb'
-    }
-  ]
+      url: "/remote",
+      title: "人机共驾",
+      icon: "bulb",
+    },
+  ];
 }
 </script>
 
