@@ -1,11 +1,16 @@
 <template>
   <a-layout class="layout">
-    <a-layout-sider v-model="collapsed" collapsible>
+    <left-menu :menuData="menuData" />
+    <!-- <a-layout-sider v-model="collapsed" collapsible>
       <div class="logo" />
-      <a-menu theme="dark" mode="vertical" :default-selected-keys="['1']" >
-        <template v-for="item in data">
+      <a-menu theme="dark" mode="vertical" :default-selected-keys="['1']">
+        <template v-for="item in menuData">
           <a-menu-item v-if="!item.children" :key="item.id">
-            <router-link :to="item.url"><a-icon :type="item.icon" /><span>{{ item.title }}</span></router-link>
+            <router-link :to="item.url"
+              ><a-icon :type="item.icon" /><span>{{
+                item.title
+              }}</span></router-link
+            >
           </a-menu-item>
           <a-sub-menu v-else :key="item.id">
             <span slot="title">
@@ -24,7 +29,7 @@
           </a-sub-menu>
         </template>
       </a-menu>
-    </a-layout-sider>
+    </a-layout-sider> -->
     <a-layout>
       <a-layout-content
         :style="{
@@ -34,7 +39,7 @@
           minHeight: '280px',
         }"
       >
-      <router-view/>
+        <router-view />
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -43,24 +48,24 @@
 <script lang='ts'>
 import { Vue, Component } from "vue-property-decorator";
 import GoodLists from "@/views/myTest/GoodLists.vue";
+import LeftMenu from "./LeftMenu.jsx";
 
 @Component({
-  components: { GoodLists },
+  components: { GoodLists, LeftMenu },
 })
 export default class Layout extends Vue {
-  collapsed: boolean = true;
-  data: Array<unknown> = [
+  menuData: Array<unknown> = [
     { id: 53, url: "/editor", title: "富文本编辑器", icon: "account-book" },
     {
       id: 215,
-      url: "/operationManage",
-      title: "哎呦",
+      url: "/d3",
+      title: "d3.js",
       icon: "alert",
       children: [
         {
           id: 56,
-          url: "/industry",
-          title: "工业车",
+          url: "/d3/test",
+          title: "初次练习",
           icon: "api",
           children: [],
         },
@@ -96,13 +101,15 @@ export default class Layout extends Vue {
     },
     {
       id: 66,
-      url: "/remote",
-      title: "人机共驾",
+      url: "/goods",
+      title: "商品列表",
       icon: "bulb",
     },
   ];
 }
 </script>
+
+
 
 <style lang='scss'>
 .layout {
@@ -115,3 +122,4 @@ export default class Layout extends Vue {
   margin: 16px;
 }
 </style>
+

@@ -1,8 +1,14 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Layout from '@/layout/index.vue'
+import BasicLayout from '@/layouts/BasicLayout.vue'
 
 Vue.use(VueRouter)
+
+const RouteView = {
+  name: 'RouteView',
+  render: (h:any) => h('router-view')
+// h函数是createElement函数 生成<router-view/>
+}
 
 const constantRoutes: Array<RouteConfig> = [
   {
@@ -13,14 +19,30 @@ const constantRoutes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'Home',
-    component: Layout
-  }
+    component: BasicLayout,
+    children: [{
+      path: '/editor',
+      name: 'Editor',
+      component: () => import('../views/VueQuillEditor/index.vue')
+    }, {
+      path: '/d3',
+      name: 'Test',
+      component: RouteView,
+      // 需要加个组件在中间，不然无法显示子组件
+      children: [{
+        path: '/d3/test',
+        name: 'Test',
+        component: () => import('../views/d3js/D3Test.vue')
+      }]
+    }, {
+      path: '/goods',
+      name: 'Goods',
+      component: () => import('../views/myTest/GoodLists.vue')
+    }]
+  },
 ]
-const asyncRoutes: Array<RouteConfig> = [{
-  path: '/editor',
-  name: 'Editor',
-  component: () => import('../views/VueQuillEditor/index.vue')
-}]
+const asyncRoutes: Array<RouteConfig> = [
+]
 
 const router = new VueRouter({
   mode: 'history',
