@@ -1,6 +1,6 @@
 <template>
   <div class="d3_container">
-    <p>你</p>
+    <p>你啊</p>
     <p>nimade</p>
   </div>
 </template>
