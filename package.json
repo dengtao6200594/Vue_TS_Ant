@@ -37,6 +37,7 @@
     "babel-plugin-import": "^1.13.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "husky": "^7.0.2",
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
     "sass": "^1.26.5",
@@ -66,5 +67,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "husky":{
+    "hooks":{
+      "pre-commit":"lint-staged"
+    }
+  },
+  "lint-staged":{
+    "src/**":[
+      "prettier --config .prettierrc --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }

@@ -1,16 +1,24 @@
 <template>
-  <div>
-    <h2>你</h2>
-    <h2>nimade</h2>
+  <div class="d3_container">
+    <p>你</p>
+    <p>nimade</p>
   </div>
 </template>
 
 <script>
 export default {
   name: "Test",
-  mounted(){
-    d3.selectAll('h2').data([1,2,3,4]).text(d=>d)
-  }
+  mounted() {
+    let h2 = d3
+    // 不能选择div#app
+      .select(".d3_container")
+      .selectAll("p")
+      .data([1, 2, 3, 4, 5])
+      .text((d) => d)
+      .enter()
+      .append("p")
+      .text((d) => d);
+  },
 };
 </script>
 
