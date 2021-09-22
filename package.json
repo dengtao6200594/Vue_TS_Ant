@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
     "json5": "^2.2.0",
+    "lint-staged": "^11.1.2",
     "mockjs": "^1.1.0",
     "register-service-worker": "^1.7.1",
     "velocity-animate": "^1.5.2",
@@ -68,13 +69,13 @@
     "last 2 versions",
     "not dead"
   ],
-  "husky":{
-    "hooks":{
-      "pre-commit":"lint-staged"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
   },
-  "lint-staged":{
-    "src/**":[
+  "lint-staged": {
+    "src/**": [
       "prettier --config .prettierrc --write",
       "eslint --fix",
       "git add"
