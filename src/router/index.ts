@@ -24,8 +24,9 @@ const constantRoutes: Array<RouteConfig> = [
 		children: [
 			{
 				path: '/editor',
-				name: 'Editor',
-				component: () => import('../views/VueQuillEditor/index.vue')
+				name: 'EditorTools',
+				component: RouteView,
+				children: [{ path: '/editor/index', name: 'Editor', component: () => import('../views/Editor/VueQuillEditor.vue') }]
 			},
 			{
 				path: '/d3',

@@ -91,7 +91,10 @@ export default {
 			const X = (i + 1) * (this.contentWidth / (this.identifyCode.length + 1))
 			const Y = this.randomNum(this.fontSizeMax, this.contentHeight - 5)
 			const DEG = this.randomNum(-10, 10)
-			// 修改坐标原点和旋转角度
+			/**
+			 * 修改坐标原点和旋转角度
+			 * 因为设置了textBaseline = 'bottom'所以Y值最小值为fontSizeMax
+			 */
 			ctx.translate(X, Y)
 			ctx.rotate((DEG * Math.PI) / 180)
 			ctx.fillText(txt, 0, 0)

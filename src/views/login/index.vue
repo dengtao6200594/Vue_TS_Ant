@@ -48,11 +48,7 @@ export default class Login extends Vue {
 	username: string = ''
 	password: string = ''
 	identifyCode: string = ''
-<<<<<<< Updated upstream
-	identifyCodes: string = '0123456789abcdwerwshdjeJKDHRJHKOOPLMKQ' //用于绘制随机字
-=======
 	identifyCodes: string = Object.freeze('0123456789abcdwerwshdjeJKDHRJHKOOPLMKQ') //用于绘制随机字
->>>>>>> Stashed changes
 
 	get index(): number {
 		return this.isShow ? 1 : 0

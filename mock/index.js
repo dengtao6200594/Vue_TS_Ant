@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.get('/api/user/login', function(rep, res) {
     //每次响应请求时读取mock data的json文件
     //getJsonFile方法定义了如何读取json文件并解析成数据对象
-    var json = getJsonFile('./login.json5');
+    var json = getJsonFile('./editor.json5');
     //将json传入Mock.mock方法中，生产数据并返回浏览器
     res.json(Mock.mock(json));
   });
